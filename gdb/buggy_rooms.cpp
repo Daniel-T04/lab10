@@ -32,6 +32,10 @@ Room *move(Room *current, Direction d) {
 }
 
 void describe(const Room *room) {
+  if (room == nullptr){
+    std::cout << "There is nothing here.\n";
+    return;
+  }
   std::cout << "You are in the " << room->name << ". " << room->description
             << "\n";
 }

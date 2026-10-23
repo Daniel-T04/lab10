@@ -7,23 +7,64 @@
  * Do not change the other functions in this file.
  ******************************************************************************/
 
-Deck::Deck() : m_cards{nullptr}, m_size{0}, m_next{0} {
+Deck::Deck() : m_cards{nullptr}, m_size{52}, m_next{0} {
   // TODO: allocate deck_size cards with new[] and fill in one of each.
+  m_cards = new Card[m_size];
+  int index = 0;
+    for(int s = 0; s < 4; ++s){
+        for (int r = 0; r < 13; ++r){
+      m_cards[index] = Card{r, static_cast<Suit>(s)};
+        ++index;
+
+       }
+   }
 }
 
 Deck::~Deck() {
   // TODO: release what the constructor allocated.
+ 
+ delete[] m_cards;
+ 
+ m_cards = nullptr;
 }
 
-Deck::Deck(const Deck &other) : m_cards{nullptr}, m_size{0}, m_next{0} {
+Deck::Deck(const Deck &other) : m_cards{nullptr}, m_size{other.m_size}, m_next{other.m_next} {
   // TODO: give this deck its own array holding the same cards as other.
-  (void)other;
+    if (other.m_cards != nullptr){
+    m_cards = new Card[m_size];
+    for (int i = 0; i < m_size; ++i){
+        m_cards[i] = other.m_cards[i];
+     }
+ 
+ } else {
+    m_cards = nullptr;
+
+
+    }
+
 }
 
 Deck &Deck::operator=(const Deck &other) {
   // TODO: free the old cards, copy other's cards, and handle d = d.
-  (void)other;
-  return *this;
+  if (this == &other){
+    return *this; 
+  }
+
+    delete[] m_cards;
+
+    m_size = other.m_size;
+    m_next = other.m_next;
+
+    if(other.m_cards != nullptr) {
+        m_cards = new Card[m_size];
+            for(int i = 0; i < m_size; ++i){
+               m_cards[i] = other.m_cards[i];
+            }
+        } else {
+            m_cards = nullptr;
+    }
+    
+    return *this;
 }
 
 /*******************************************************************************
@@ -49,6 +90,9 @@ Card Deck::deal() {
   return top;
 }
 
-bool Deck::empty() { return m_next >= m_size; }
+bool Deck::empty() const { 
+    return m_next >= m_size; 
+}
 
-int Deck::remaining() { return m_size - m_next; }
+int Deck::remaining() const { 
+    return m_size - m_next; }
