@@ -19,7 +19,9 @@ Record:
 - The backtrace (`bt`) after the crash:
 
 #0  std::operator<< ... at .../basic_string.h:227
+
 #1  0x00005555555563de in describe (room=0x0) at /home/ubuntu/lab10/gdb/buggy_rooms.cpp:36
+
 #2  0x00005555555566b6 in main () at /home/ubuntu/lab10/gdb/buggy_rooms.cpp:53
 
 - The function and line number where your own code crashed (use `frame N` to move to it):
@@ -55,8 +57,8 @@ For each bug, write one or two sentences: what kind of error AddressSanitizer re
 | Bug | Report kind | Allocated at | Freed at | Cause in one sentence |
 | --- | --- | --- | --- | --- |
 | 1 | Memory Leak|deal_a_hand()|Never freed | Dynamic Memory was allocated with new but delete[] was nenver called before the pointer went out of the scope.   |
-| 2 | | | | |
-| 3 | | | | |
+| 2 |Double Free or Invalid Free |Constructor | Freed twice |  A shallow copy caused two Deck objects to point to the exact same dynamically allocated card array which leads both to attempt deleting it upon destruction|
+| 3 |Double Free |In code | Freed twice | The code explictly called delete or deleted the same pointer twice on the same memory address   |
 
 Confirm one bug in GDB. Use at least two of `watch`, `finish`, and `x`. Paste the session and explain what each command showed:
 
