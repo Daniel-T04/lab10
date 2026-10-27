@@ -30,7 +30,8 @@ For each bug, write one or two sentences: what kind of error AddressSanitizer re
 
 | Bug | Report kind | Allocated at | Freed at | Cause in one sentence |
 | --- | --- | --- | --- | --- |
-| 1 | | | | |
+| 1 | Memory Leak|deal_a_hand()
+                 (deck_bugs.cpp:42)| | |
 | 2 | | | | |
 | 3 | | | | |
 
