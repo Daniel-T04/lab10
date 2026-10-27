@@ -62,4 +62,9 @@ For each bug, write one or two sentences: what kind of error AddressSanitizer re
 
 Confirm one bug in GDB. Use at least two of `watch`, `finish`, and `x`. Paste the session and explain what each command showed:
 
+finish command. Ran until the deal_a_hand() function returned back to main, confirming the function execution flow.
+
+`x/4xw &which`: Examined raw memory at the address of the `which` string variable, showing its underlying hex values.
+
+
 Fixes for all three bugs (describe each change):
