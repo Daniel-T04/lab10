@@ -54,7 +54,7 @@ For each bug, write one or two sentences: what kind of error AddressSanitizer re
 
 | Bug | Report kind | Allocated at | Freed at | Cause in one sentence |
 | --- | --- | --- | --- | --- |
-| 1 | MemoryLeak|deal_a_hand()|Never freed | Memory was allocated   |
+| 1 | Memory Leak|deal_a_hand()|Never freed | Dynamic Memory was allocated with new but delete[] was nenver called before the pointer went out of the scope.   |
 | 2 | | | | |
 | 3 | | | | |
 
