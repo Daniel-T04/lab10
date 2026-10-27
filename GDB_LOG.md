@@ -68,3 +68,9 @@ Confirm one bug in GDB. Use at least two of `watch`, `finish`, and `x`. Paste th
 
 
 Fixes for all three bugs (describe each change):
+
+Bug 1 (Memory Leak): Added a matching delete[] statement to clean up the dynamically allocated card array before the function pointer went out of scope, preventing the memory reported by LeakSanitizer.
+
+Bug 2 (Double Free or Shallow Copy): Implemented a proper deep copy constructor and copy assignment operator for the Deck class, makes sure that each object allocates its own independent memory buffer instead of sharing a shallow reference to the same address.
+
+Bug 3 (Explict Double Delete): Removed the redundant second deletion call on the same memory address, and safely assigned deleted pointers to nullptr to prevent invalid heap corruption.
